@@ -4,9 +4,9 @@
   "description": "This repository contains an example of an erc-20 token with a tax charged for using the transfer function",
   "main": "hardhat.config.js",
   "scripts": {
-    "compile": "yarn/npx run prettier:solidity && npx hardhat compile",
-    "test": "yarn/npx run eslint:fix-tests && npx hardhat test",
-    "coverage": "yarn/npx hardhat coverage",
+    "compile": "npx run prettier:solidity && npx hardhat compile",
+    "test": "npx run eslint:fix-tests && npx hardhat test",
+    "coverage": "npx hardhat coverage",
     "eslint:fix-tests": "eslint test/* --fix",
     "prettier:solidity": "./node_modules/.bin/prettier --write contracts/**/*.sol"
   },
