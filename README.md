@@ -28,9 +28,9 @@ which are listed in the 'package.json' file (for example, coverage (```yarn add 
 ### Deploying contract
 
 ```yarn hardhat run scripts/01_deploy_FeeToken``` 
---network <your network>
+--network `<your network>`
 
 ### Verify a contract
 
 ```yarn hardhat run scripts/01_verify_FeeToken``` 
---network <your network>
+--network `<your network>`
