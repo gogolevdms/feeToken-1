@@ -7,6 +7,14 @@ import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
 import '@openzeppelin/contracts/access/Ownable.sol';
 
+/**
+ * @title FeeToken.
+ * @author bright lynx team.
+ * @dev This contract is an augmented implementation of the erc-20 token in its classic form. 
+ * Users can use standart erc-20 functions, but they have to pay a tax charged for using the transfer function.
+ * The tax in the form of tokens goes to the wallet specified by the owner.
+ */
+
 contract FeeToken is IERC20, IERC20Metadata, Context, Ownable {
     mapping(address => uint256) private _balances;
 
@@ -86,17 +94,27 @@ contract FeeToken is IERC20, IERC20Metadata, Context, Ownable {
         return true;
     }
 
+    /// @notice The function sets the new tax amount.
+    /// @dev Stores the unsigned int value in the state variable 'taxFee'.
+    /// @param _taxFee The new value to store.
+    /// @return The bool value.
+
     function _setFee(uint256 _taxFee) 
         external 
         onlyOwner 
-        returns (uint256) 
+        returns (bool) 
     {
         emit setFee(taxFee, _taxFee);
 
         taxFee = _taxFee;
 
-        return taxFee;
+        return true;
     }
+
+    /// @notice The function sets a new wallet.
+    /// @dev Stores the address value in the state variable 'wallet'.
+    /// @param _wallet The new value to store.
+    /// @return The bool value.
 
     function _setWallet(address _wallet) 
         external 
@@ -170,6 +188,20 @@ contract FeeToken is IERC20, IERC20Metadata, Context, Ownable {
 
         return true;
     }
+
+    /// @notice The function transfers tokens.
+    /** 
+    * @dev The function moves `amount` of tokens from `sender` to `recipient`.
+    *
+    * Requirements:
+    *
+    * - `sender` cannot be the zero address.
+    * - `recipient` cannot be the zero address.
+    * - `sender` must have a balance of at least `amount`.
+    */
+    /// @param sender The address of the token sender.
+    /// @param recipient Address of the token recipient.
+    /// @param amount Number of tokens to transfer.
 
     function _transfer(
         address sender,

@@ -1,8 +1,27 @@
 {
-  "name": "myproject",
+  "name": "feetoken",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "This repository contains an example of an erc-20 token with a tax charged for using the transfer function",
+  "main": "hardhat.config.js",
+  "scripts": {
+    "compile": "yarn/npx run prettier:solidity && npx hardhat compile",
+    "test": "yarn/npx run eslint:fix-tests && npx hardhat test",
+    "coverage": "yarn/npx hardhat coverage",
+    "eslint:fix-tests": "eslint test/* --fix",
+    "prettier:solidity": "./node_modules/.bin/prettier --write contracts/**/*.sol"
+  },
+  "repository": "https://github.com/MolPeCJ/feeToken",
+  "keywords": [
+    "erc20",
+    "tax",
+    "bsc"
+  ],
+  "author": "bright lynx team",
   "license": "MIT",
+  "engines": {
+    "npm": ">=6.12.0",
+    "node": ">=12.13.0"
+  },
   "dependencies": {
     "@nomiclabs/hardhat-etherscan": "^3.0.0",
     "@openzeppelin/contracts": "^4.4.2",
@@ -10,12 +29,17 @@
     "dotenv": "^11.0.0",
     "hardhat": "^2.8.2",
     "hardhat-deploy": "^0.9.24",
+    "prettier": "^2.5.1",
+    "solhint": "^3.3.6",
     "solidity-coverage": "^0.7.17"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.4",
     "@nomiclabs/hardhat-waffle": "^2.0.0",
     "chai": "^4.2.0",
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
     "ethereum-waffle": "^3.0.0",
     "ethers": "^5.0.0"
   }

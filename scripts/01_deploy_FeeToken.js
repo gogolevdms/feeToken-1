@@ -1,29 +1,29 @@
 const network = hre.network.name;
-const fs = require("fs");
+const fs = require('fs');
 
 async function main() {
   const namesAndAddresses = {};
   const [deployer] = await hre.ethers.getSigners();
 
-  const feeTokenInstance = await ethers.getContractFactory("FeeToken");
+  const feeTokenInstance = await ethers.getContractFactory('FeeToken');
   const feeToken = await feeTokenInstance.deploy(process.env.TOKEN_NAME, process.env.TOKEN_SYMBOL);
 
-  console.log("Network", network);
-  console.log("Deploying contracts with the account:", deployer.address);
-  console.log("Account balance:", (await deployer.getBalance()).toString());
+  console.log('Network', network);
+  console.log('Deploying contracts with the account:', deployer.address);
+  console.log('Account balance:', (await deployer.getBalance()).toString());
 
   console.log(`Smart contract has been deployed to: ${feeToken.address}`);
 
   namesAndAddresses.feeToken = feeToken.address;
 
   const data = await JSON.stringify(namesAndAddresses, null, 2);
-  const dir = "./networks/";
+  const dir = './networks/';
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
-  const fileName = "FeeToken_" + `${network}.json`;
+  const fileName = 'FeeToken_' + `${network}.json`;
 
-  await fs.writeFileSync(dir + fileName, data, { encoding: "utf8" });
+  await fs.writeFileSync(dir + fileName, data, { encoding: 'utf8' });
 }
 
 main()
